@@ -579,94 +579,49 @@ Blockly.Blocks['mbedActions_leds_off'] = {
     }
 };
 
+// adapted from previous mbedActions_write_to_pin and robActions_write_pin from robActions.js
 Blockly.Blocks['mbedActions_write_to_pin'] = {
-    /**
-     * Sends to choosen pin value.
-     * 
-     * @constructs mbedActions_write_to_pin
-     * @this.Blockly.Block
-     * @param {String/dropdown}
-     *            VALUETYPE - analog, digital
-     * @param {String/dropdown}
-     *            PIN - 0-3
-     * @param {Number}
-     *            VALUE
-     * @returns immediately
-     * @memberof Block
-     */
-
     init : function() {
         this.setColour(Blockly.CAT_ACTION_RGB);
-        var valueType = new Blockly.FieldDropdown([ [ Blockly.Msg.ANALOG, 'ANALOG' ], [ Blockly.Msg.DIGITAL, 'DIGITAL' ] ], function(option) {
+        this.dropDownPorts = getConfigPorts('digitalin');
+        var that = this;
+        var valueType = new Blockly.FieldDropdown([ [ Blockly.Msg.MODE_DIGITAL, 'DIGITAL' ], [ Blockly.Msg.MODE_ANALOG, 'ANALOG' ] ], function(option) {
             if (option && this.sourceBlock_.getFieldValue('VALUETYPE') !== option) {
-                this.sourceBlock_.updatePins_(option);
+                that.updatePins_(option);
             }
         });
-        this.appendValueInput('VALUE').appendField(Blockly.Msg.PIN_WRITE).appendField(valueType, 'VALUETYPE').appendField(Blockly.Msg.VALUE_TO + ' '
-                + Blockly.Msg.SENSOR_PIN).appendField(new Blockly.FieldDropdown([ [ "dummy", '0' ] ]), 'PIN').setCheck('Number');
-        this.protocol_ = 'ANALOG';
+        this.protocol_ = 'DIGITAL';        
+        this.dependConfig = {
+            'type' : this.protocol_,
+            'dropDown' : this.dropDownPorts
+        };
+        this.appendValueInput('VALUE').appendField(Blockly.Msg.PIN_WRITE).appendField(valueType, 'VALUETYPE').appendField(Blockly.Msg.VALUE_TO + ' ' + Blockly.Msg.SENSOR_PIN).appendField(this.dropDownPorts, 'PIN').setCheck('Number');
         this.setPreviousStatement(true);
         this.setNextStatement(true);
         this.setTooltip(Blockly.Msg.WRITE_TO_PIN_TOOLTIP);
         this.updatePins_(this.protocol_);
     },
-    /**
-     * Create XML to represent whether the sensor type has changed.
-     * 
-     * @return {Element} XML storage element.
-     * @this Blockly.Block
-     */
     mutationToDom : function() {
         var container = document.createElement('mutation');
         container.setAttribute('protocol', this.protocol_);
         return container;
     },
-    /**
-     * Parse XML to restore the sensor type.
-     * 
-     * @param {!Element}
-     *            xmlElement XML storage element.
-     * @this Blockly.Block
-     */
     domToMutation : function(xmlElement) {
         var input = xmlElement.getAttribute('protocol');
         this.protocol_ = input;
         this.updatePins_(this.protocol_);
     },
-    updatePins_ : function(protocol) {
-        this.protocol_ = protocol;
-        if (this.workspace.device === 'microbit') {
-            if (protocol === 'ANALOG') {
-                var pins = [ [ '0', '0' ], [ '1', '1' ], [ '2', '2' ], [ '3', '3' ], [ '4', '4' ], [ '10', '10' ] ];
-                var pinField = this.getField("PIN");
-                pinField.menuGenerator_ = pins;
-            } else if (protocol === 'DIGITAL') {
-                var pins = [ [ '0', '0' ], [ '1', '1' ], [ '2', '2' ], [ '3', '3' ], [ '4', '4' ], [ '5', '5' ], [ '6', '6' ], [ '7', '7' ], [ '8', '8' ],
-                        [ '9', '9' ], [ '10', '10' ], [ '11', '11' ], [ '12', '12' ], [ '13', '13' ], [ '14', '14' ], [ '15', '15' ], [ '16', '16' ],
-                        [ '19', '19' ], [ '20', '20' ] ];
-                var pinField = this.getField("PIN");
-                pinField.menuGenerator_ = pins;
-            }
-            pinField.setValue("0");
-            pinField.setText('0');
-        } else {
-            if (protocol === 'ANALOG') {
-                var pins = [ [ 'P1', '1' ], [ 'P2', '2' ], [ 'A1', '5' ], [ 'C04', 'C04' ], [ 'C05', 'C05' ], [ 'C06', 'C06' ], [ 'C16', 'C16' ],
-                        [ 'C17', 'C17' ] ];
-                var pinField = this.getField("PIN");
-                pinField.menuGenerator_ = pins;
-                pinField.setValue("1");
-                pinField.setText('P1');
-            } else if (protocol === 'DIGITAL') {
-                var pins = [ [ 'P0', '0' ], [ 'P1', '1' ], [ 'P2', '2' ], [ 'P3', '3' ], [ 'A0', '4' ], [ 'A1', '5' ], [ 'C04', 'C04' ], [ 'C05', 'C05' ],
-                        [ 'C06', 'C06' ], [ 'C07', 'C07' ], [ 'C08', 'C08' ], [ 'C09', 'C09' ], [ 'C10', 'C10' ], [ 'C11', 'C11' ], [ 'C12', 'C12' ],
-                        [ 'C16', 'C16' ], [ 'C17', 'C17' ], [ 'C18', 'C18' ], [ 'C19', 'C19' ] ];
-                var pinField = this.getField("PIN");
-                pinField.menuGenerator_ = pins;
-                pinField.setValue("0");
-                pinField.setText('P0');
-            }
+    updatePins_ : function(option) {
+    	this.protocol_ = option;
+        var configBlockName = option.toLowerCase() + 'in';
+        var dropDownPorts = getConfigPorts(configBlockName);
+        this.dependConfig.type = configBlockName;
+        this.dropDownPorts.menuGenerator_ = dropDownPorts.menuGenerator_;
+        this.dropDownPorts.arrow_ && this.dropDownPorts.arrow_.replaceChild(document.createTextNode(' '), this.dropDownPorts.arrow_.childNodes[0]);
+        if (this.dropDownPorts.arrow_ && this.dropDownPorts.menuGenerator_.length > 1) {
+            this.dropDownPorts.arrow_.replaceChild(document.createTextNode(' ' + Blockly.FieldDropdown.ARROW_CHAR), this.dropDownPorts.arrow_.childNodes[0]);
         }
+        this.dropDownPorts.setValue(this.dropDownPorts.menuGenerator_[0][0]);
     }
 };
 

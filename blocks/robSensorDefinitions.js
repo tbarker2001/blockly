@@ -765,7 +765,7 @@ sensors.key.calliope = {
         type : 'Boolean',
         question : true
     } ],
-    ports : [ [ 'A', 'A' ], [ 'B', 'B' ] ]
+    ports : 'CONFIGURATION'
 };
 
 sensors.key.ev3 = {

@@ -69,6 +69,17 @@ Blockly.Blocks.robConfigDefinitions['pinsDigital'].sensebox = function() {
 Blockly.Blocks.robConfigDefinitions['pinsDigital'].festobionic = function() {
     return createPins(1, 4);
 };
+Blockly.Blocks.robConfigDefinitions['pinsDigital'].calliope = function() {
+    var array = [ [ 'P0', '0' ], [ 'P1', '1' ], [ 'P2', '2' ], [ 'P3', '3' ], [ 'A0', '4' ], [ 'A1', '5' ], [ 'C04', 'C04' ], [ 'C05', 'C05' ],
+    [ 'C06', 'C06' ], [ 'C07', 'C07' ], [ 'C08', 'C08' ], [ 'C09', 'C09' ], [ 'C10', 'C10' ], [ 'C11', 'C11' ], [ 'C12', 'C12' ],
+    [ 'C16', 'C16' ], [ 'C17', 'C17' ], [ 'C18', 'C18' ], [ 'C19', 'C19' ] ]
+    return array;
+};
+Blockly.Blocks.robConfigDefinitions['pinsDigital'].microbit = function() {
+    var array = createPins(0, 16);
+    array = array.concat(createPins(19, 20));
+    return array;
+};
 
 Blockly.Blocks.robConfigDefinitions['pinsAnalog'] = {};
 Blockly.Blocks.robConfigDefinitions['pinsAnalog'].uno = function() {
@@ -87,6 +98,16 @@ Blockly.Blocks.robConfigDefinitions['pinsAnalog'].sensebox = function() {
     var array = createPins(1, 2, "A");
     array = array.concat(createPins(3, 4, "B"));
     array = array.concat(createPins(5, 6, "C"));
+    return array;
+};
+Blockly.Blocks.robConfigDefinitions['pinsAnalog'].calliope = function() {
+    var array = [ [ 'P1', '1' ], [ 'P2', '2' ], [ 'A1', '5' ], [ 'C04', 'C04' ], [ 'C05', 'C05' ], [ 'C06', 'C06' ], [ 'C16', 'C16' ],
+    [ 'C17', 'C17' ] ];
+    return array;
+};
+Blockly.Blocks.robConfigDefinitions['pinsAnalog'].microbit = function() {
+    var array = createPins(0, 4);
+    array = array.concat(createPins(10, 10));
     return array;
 };
 
@@ -118,6 +139,16 @@ Blockly.Blocks.robConfigDefinitions['pinsAnalogWrite'].sensebox = function() {
     var array = createPins(1, 2, "A");
     array = array.concat(createPins(3, 4, "B"));
     array = array.concat(createPins(5, 6, "C"));
+    return array;
+};
+Blockly.Blocks.robConfigDefinitions['pinsAnalogWrite'].calliope = function() {
+    var array = [ [ 'P1', '1' ], [ 'P2', '2' ], [ 'A1', '5' ], [ 'C04', 'C04' ], [ 'C05', 'C05' ], [ 'C06', 'C06' ], [ 'C16', 'C16' ],
+    [ 'C17', 'C17' ] ];
+    return array;
+};
+Blockly.Blocks.robConfigDefinitions['pinsAnalogWrite'].microbit = function() {
+    var array = createPins(0, 4);
+    array = array.concat(createPins(10, 10));
     return array;
 };
 
@@ -325,9 +356,17 @@ confBlocks.key.arduino = {
     standardPins : [ '2' ],
     fixedPorts : [ [ 'VCC', '5V' ] ]
 };
-
+confBlocks.key.calliope = {
+    title: 'KEY',
+    ports : [ [ 'pin', 'PIN1' ] ],
+    pins : function() {
+        return [ [ 'A', 'A' ], [ 'B', 'B' ] ];
+    },
+    sensor : true,
+    standardPins : [ 'A' ],
+};
+confBlocks.key.microbit = confBlocks.key.calliope;
 confBlocks.key.sensebox = confBlocks.key.arduino;
-
 confBlocks.key.wedo = {
     title : 'KEY',
     bricks : true,
@@ -406,7 +445,11 @@ confBlocks.led.arduino = {
     title : 'LED',
     ports : [ [ 'input', 'INPUT' ] ],
     pins : function(a) {
-        return Blockly.Blocks.robConfigDefinitions['pinsDigital'][a]().concat([[Blockly.Msg.PORT_INTERNAL, 'LED_BUILTIN']]); // add internal LED to available LEDs
+        var pins = Blockly.Blocks.robConfigDefinitions['pinsDigital'][a];
+        if (pins !== undefined) {
+            pins = pins().concat([[Blockly.Msg.PORT_INTERNAL, 'LED_BUILTIN']]); // add internal LED to available LEDs
+        }
+        return pins;
     },
     sensor : false,
     standardPins : [ 'LED_BUILTIN' ],
@@ -580,7 +623,6 @@ confBlocks.digitalout.arduino = {
     },
     sensor : true,
 };
-
 confBlocks.digitalout.sensebox = confBlocks.digitalout.arduino;
 
 confBlocks.analogout = {};
@@ -592,7 +634,6 @@ confBlocks.analogout.arduino = {
     },
     sensor : true,
 };
-
 confBlocks.analogout.sensebox = confBlocks.analogout.arduino;
 
 confBlocks.digitalin = {};
@@ -604,7 +645,8 @@ confBlocks.digitalin.arduino = {
     },
     sensor : false,
 };
-
+confBlocks.digitalin.calliope = confBlocks.digitalin.arduino;
+confBlocks.digitalin.microbit = confBlocks.digitalin.arduino;
 confBlocks.digitalin.sensebox = confBlocks.digitalin.arduino;
 
 confBlocks.analogin = {};
@@ -616,7 +658,8 @@ confBlocks.analogin.arduino = {
     },
     sensor : false,
 };
-
+confBlocks.analogin.calliope = confBlocks.analogin.arduino;
+confBlocks.analogin.microbit = confBlocks.analogin.arduino;
 confBlocks.analogin.sensebox = confBlocks.analogin.arduino;
 
 confBlocks.wireless = {}
