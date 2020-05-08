@@ -157,6 +157,7 @@ Blockly.Blocks['robActions_motor_on'] = {
             ports = [ [ Blockly.Msg.MOTOR + ' ' + 'M1', '1' ], [ Blockly.Msg.MOTOR + ' ' + 'M2', '2' ] ];
             break;
         case 'wedo':
+        case 'orb':
             this.action = 'MOTOR';
             ports = [];
             var container = Blockly.Workspace.getByContainer("bricklyDiv");
@@ -189,7 +190,7 @@ Blockly.Blocks['robActions_motor_on'] = {
         this.setPreviousStatement(true);
         this.setNextStatement(true);
         this.setTooltip(Blockly.Msg.MOTOR_ON_TOOLTIP);
-        if (this.workspace.device !== 'wedo') {
+        if (this.workspace.device !== 'wedo' && this.workspace.device !== 'orb') {
             this.appendValueInput('POWER').appendField(dropDownPorts, 'MOTORPORT').appendField(Blockly.Msg.ON).appendField(Blockly.Msg.MOTOR_SPEED).setCheck('Number');
         } else {
             this.appendValueInput('POWER').appendField(Blockly.Msg.ACTION_MOTOR).appendField(dropDownPorts, 'MOTORPORT').appendField(Blockly.Msg.ON).appendField(Blockly.Msg.MOTOR_SPEED).setCheck('Number');
@@ -228,7 +229,7 @@ Blockly.Blocks['robActions_motor_on_for'] = {
         } else if (this.workspace.device === 'mbot') {
             ports = [ [ Blockly.Msg.MOTOR + ' ' + 'M1', '1' ], [ Blockly.Msg.MOTOR + ' ' + 'M2', '2' ] ];
         }
-        if (this.workspace.device === 'wedo') {
+        if (this.workspace.device === 'wedo' || this.workspace.device === 'orb') {
             this.action = 'MOTOR';
             var portList = [];
             var container = Blockly.Workspace.getByContainer("bricklyDiv");
@@ -412,7 +413,7 @@ Blockly.Blocks['robActions_motor_stop'] = {
                 [Blockly.Msg.MOTOR + ' ' + Blockly.Msg.MOTOR_RIGHT, 'RMOTOR']];
         }
         var motorPort = new Blockly.FieldDropdown(ports);
-        if (this.workspace.device === 'wedo') {
+        if (this.workspace.device === 'wedo' || this.workspace.device === 'orb') {
             this.action = 'MOTOR';
             var portList = [];
             var container = Blockly.Workspace.getByContainer("bricklyDiv");
@@ -634,10 +635,10 @@ Blockly.Blocks['robActions_display_text'] = {
         } else {
             this.appendValueInput('OUT').setAlign(Blockly.ALIGN_RIGHT).appendField(Blockly.Msg.DISPLAY_SHOW + ' ' + Blockly.Msg.DISPLAY_TEXT);
         }
-        if (this.workspace.device !== 'botnroll' && this.workspace.device !== 'wedo') {
+        if (this.workspace.device !== 'botnroll' && this.workspace.device !== 'wedo' && this.workspace.device !== 'orb') {
             this.appendValueInput('COL').setCheck('Number').setAlign(Blockly.ALIGN_RIGHT).appendField(Blockly.Msg.DISPLAY_COL);
         }
-        if (this.workspace.device !== 'wedo') {
+        if (this.workspace.device !== 'wedo' && this.workspace.device !== 'orb') {
             this.appendValueInput('ROW').setCheck('Number').setAlign(Blockly.ALIGN_RIGHT).appendField(Blockly.Msg.DISPLAY_ROW);
         }
         this.setPreviousStatement(true);
@@ -768,7 +769,7 @@ Blockly.Blocks['robActions_play_tone'] = {
                 'dropDown' : dropDownPorts
             };
             this.appendValueInput('FREQUENCE').appendField(Blockly.Msg.PLAY).appendField(dropDownPorts, 'ACTORPORT').appendField(Blockly.Msg.PLAY_FREQUENZ).setCheck('Number');
-        } else if (this.workspace.device === 'wedo') {
+        } else if (this.workspace.device === 'wedo' || this.workspace.device === 'orb') {
             this.action = 'BUZZER';
             var portList = [];
             var container = Blockly.Workspace.getByContainer("bricklyDiv");
@@ -962,7 +963,7 @@ Blockly.Blocks['robActions_led_on'] = {
                 'type' : 'rgbled',
                 'dropDown' : ports
             };
-        } else if (this.workspace.device === 'wedo') {
+        } else if (this.workspace.device === 'wedo' || this.workspace.device === 'orb') {
             var ports = new Blockly.FieldDropdown(portList);
             this.dependConfig = {
                 'type' : 'led',
@@ -1021,7 +1022,7 @@ Blockly.Blocks['robActions_led_off'] = {
                 'type' : 'rgbled',
                 'dropDown' : ports
             };
-        } else if (this.workspace.device === 'wedo') {
+        } else if (this.workspace.device === 'wedo' || this.workspace.device === 'orb') {
             var ports = new Blockly.FieldDropdown(portList);
             this.dependConfig = {
                 'type' : 'led',

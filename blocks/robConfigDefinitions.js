@@ -237,6 +237,7 @@ confBlocks.infrared.wedo = {
     pins : Blockly.Blocks.robConfigDefinitions['pins_wedo'],
     sensor : true
 };
+confBlocks.infrared.orb = confBlocks.infrared.wedo;
 
 confBlocks.infrared.arduino = {
     title : 'INFRARED',
@@ -333,6 +334,7 @@ confBlocks.key.wedo = {
     bricks : true,
     sensor : true
 };
+confBlocks.key.orb = confBlocks.key.wedo;
 
 confBlocks.drop = {};
 confBlocks.drop.arduino = {
@@ -443,6 +445,7 @@ confBlocks.led.wedo = {
     bricks : true,
     action : true
 };
+confBlocks.led.orb = confBlocks.led.wedo;
 
 confBlocks.buzzer = {};
 confBlocks.buzzer.arduino = {
@@ -472,6 +475,7 @@ confBlocks.buzzer.wedo = {
     bricks : true,
     action : true
 };
+confBlocks.buzzer.orb = confBlocks.buzzer.wedo;
 
 confBlocks.sound = {};
 confBlocks.sound.sensebox = {
@@ -554,6 +558,7 @@ confBlocks.gyro.wedo = {
     pins : Blockly.Blocks.robConfigDefinitions['pins_wedo'],
     sensor : true
 };
+confBlocks.gyro.orb = confBlocks.gyro.wedo;
 
 confBlocks.gyro.sensebox = {
     title : 'GYRO',
@@ -570,6 +575,7 @@ confBlocks.motor.wedo = {
     pins : Blockly.Blocks.robConfigDefinitions['pins_wedo'],
     action : true
 };
+confBlocks.motor.orb = confBlocks.motor.wedo;
 
 confBlocks.digitalout = {};
 confBlocks.digitalout.arduino = {

@@ -444,7 +444,7 @@ Blockly.Blocks['mbedActions_play_note'] = {
         var frequence = new Blockly.FieldNote('261.626');
         var duration = new Blockly.FieldDropdown([ [ Blockly.Msg.PLAY_WHOLE, '2000' ], [ Blockly.Msg.PLAY_HALF, '1000' ], [ Blockly.Msg.PLAY_QUARTER, '500' ],
                 [ Blockly.Msg.PLAY_EIGHTH, '250' ], [ Blockly.Msg.PLAY_SIXTEENTH, '125' ] ]);
-        if (this.workspace.device === 'wedo') {
+        if (this.workspace.device === 'wedo' || this.workspace.device === 'orb') {
             this.action = 'BUZZER';
             var portList = [];
             var container = Blockly.Workspace.getByContainer("bricklyDiv");
