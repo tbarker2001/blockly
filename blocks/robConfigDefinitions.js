@@ -125,6 +125,10 @@ Blockly.Blocks.robConfigDefinitions['pins_wedo'] = function() {
     return createPins(1, 2);
 };
 
+Blockly.Blocks.robConfigDefinitions['pinsOrb'] = function() {
+    return createPins(1, 4);
+};
+
 confBlocks.ultrasonic = {};
 confBlocks.ultrasonic.arduino = {
     title : 'ULTRASONIC',
@@ -575,7 +579,13 @@ confBlocks.motor.wedo = {
     pins : Blockly.Blocks.robConfigDefinitions['pins_wedo'],
     action : true
 };
-confBlocks.motor.orb = confBlocks.motor.wedo;
+confBlocks.motor.orb = {
+    title : 'MOTOR',
+    ports : [ [ 'CONNECTOR', 'CONNECTOR' ] ],
+    pins : Blockly.Blocks.robConfigDefinitions['pinsOrb'],
+    action : true,
+    dropdowns : [ [ 'MOTOR_REGULATION', [ [ 'YES', 'TRUE' ],[ 'NO', 'FALSE' ] ] ] , [ 'MOTOR_SIDE', [ [ 'LEFT', 'LEFT' ],[ 'RIGHT', 'RIGHT' ], [ 'NONE', 'NONE' ] ] ] ]
+};
 
 confBlocks.digitalout = {};
 confBlocks.digitalout.arduino = {

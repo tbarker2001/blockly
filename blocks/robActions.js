@@ -467,7 +467,7 @@ Blockly.Blocks['robActions_motorDiff_on_for'] = {
         this.setColour(Blockly.CAT_ACTION_RGB);
         var dropdown = new Blockly.FieldDropdown([ [ Blockly.Msg.MOTOR_FOREWARD, 'FOREWARD' ], [ Blockly.Msg.MOTOR_BACKWARD, 'BACKWARDS' ] ]);
         this.appendValueInput('POWER').appendField(Blockly.Msg.MOTOR_DRIVE).appendField(dropdown, 'DIRECTION').appendField(Blockly.Msg.MOTOR_SPEED).setCheck('Number');
-        if (this.workspace.device === 'botnroll' || this.workspace.device === 'mbot') {
+        if (this.workspace.device === 'botnroll' || this.workspace.device === 'mbot' || this.workspace.device === 'orb') {
             this.appendValueInput('DISTANCE').setAlign(Blockly.ALIGN_RIGHT).appendField(Blockly.Msg.SENSOR_TIME + ' ms').setCheck('Number');
         } else {
             this.appendValueInput('DISTANCE').setAlign(Blockly.ALIGN_RIGHT).appendField(Blockly.Msg.MOTOR_DISTANCE).setCheck('Number');
