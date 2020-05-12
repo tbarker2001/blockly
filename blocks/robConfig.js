@@ -91,14 +91,20 @@ Blockly.Blocks['robConf_generic'] = {
             for (var i = 0; i < confBlock.inputs.length; i++) {
                 var textFieldName = confBlock.inputs[i][0];
                 var textField = new Blockly.FieldTextInput(confBlock.inputs[i][1]);
-                this.appendDummyInput().setAlign(Blockly.ALIGN_RIGHT).appendField(Blockly.Msg[confBlock.inputs[i][0]]).appendField(textField, textFieldName);
+                this.appendDummyInput().setAlign(Blockly.ALIGN_RIGHT).appendField(Blockly.Msg[textFieldName]).appendField(textField, textFieldName);
             }
         }
         if (confBlock.dropdowns) {
             for (var i = 0; i < confBlock.dropdowns.length; i++) {
-                var dropDownName = Blockly.Msg[confBlock.dropdowns[i][0]];
-                var fieldDropDown = new Blockly.FieldDropdown(confBlock.dropdowns[i][1]);
-                this.appendDummyInput().setAlign(Blockly.ALIGN_RIGHT).appendField(dropDownName).appendField(fieldDropDown, dropDownName);
+                var dropDownName = confBlock.dropdowns[i][0];
+                var dropDownEntries = confBlock.dropdowns[i][1];
+                var dropDownList = [];
+                for (var j = 0; j < dropDownEntries.length; j++) {
+                    dropDownList.push([Blockly.Msg[dropDownEntries[j][0]] || dropDownEntries[j][0], dropDownEntries[j][1]]);
+                }
+                console.log(dropDownList);
+                var fieldDropDown = new Blockly.FieldDropdown(dropDownList);
+                this.appendDummyInput().setAlign(Blockly.ALIGN_RIGHT).appendField(Blockly.Msg[dropDownName]).appendField(fieldDropDown, dropDownName);
             }
         }
 

@@ -584,7 +584,7 @@ confBlocks.motor.orb = {
     ports : [ [ 'CONNECTOR', 'CONNECTOR' ] ],
     pins : Blockly.Blocks.robConfigDefinitions['pinsOrb'],
     action : true,
-    dropdowns : [ [ 'MOTOR_REGULATION', [ [ 'YES', 'TRUE' ],[ 'NO', 'FALSE' ] ] ] , [ 'MOTOR_SIDE', [ [ 'LEFT', 'LEFT' ],[ 'RIGHT', 'RIGHT' ], [ 'NONE', 'NONE' ] ] ] ]
+    dropdowns : [ [ 'MOTOR_REGULATION', [ [ 'YES', 'TRUE' ],[ 'NO', 'FALSE' ] ] ] , [ 'MOTOR_SIDE', [ [ 'MOTOR_LEFT', 'LEFT' ],[ 'MOTOR_RIGHT', 'RIGHT' ], [ 'MOTOR_NONE', 'NONE' ] ] ] ]
 };
 
 confBlocks.digitalout = {};
