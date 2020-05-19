@@ -585,7 +585,7 @@ Blockly.Blocks['mbedActions_write_to_pin'] = {
         this.setColour(Blockly.CAT_ACTION_RGB);
         this.dropDownPorts = getConfigPorts('digitalin');
         var that = this;
-        var valueType = new Blockly.FieldDropdown([ [ Blockly.Msg.MODE_DIGITAL, 'DIGITAL' ], [ Blockly.Msg.MODE_ANALOG, 'ANALOG' ] ], function(option) {
+        var valueType = new Blockly.FieldDropdown([ [ Blockly.Msg.DIGITAL, 'DIGITAL' ], [ Blockly.Msg.ANALOG, 'ANALOG' ] ], function(option) {
             if (option && this.sourceBlock_.getFieldValue('VALUETYPE') !== option) {
                 that.updatePins_(option);
             }
