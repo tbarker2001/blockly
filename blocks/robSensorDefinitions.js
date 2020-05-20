@@ -1112,7 +1112,8 @@ sensors.sound.calliope = {
         unit : 'PERCENT',
         op : 'NUM_REV',
         value : 50
-    } ]
+    } ],
+    ports : 'CONFIGURATION'
 };
 sensors.sound.ev3 = {
     title : 'SOUND',

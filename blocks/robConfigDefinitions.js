@@ -525,6 +525,14 @@ confBlocks.buzzer.wedo = {
 };
 
 confBlocks.sound = {};
+confBlocks.sound.calliope = {
+    title: 'SOUND',
+    ports : [ [ 'pin', 'PIN1' ] ],
+    pins : function(a) {
+        return [[Blockly.Msg.PORT_INTERNAL, 'LED_BUILTIN']]; // only inbuilt
+    },
+    sensor : true
+};
 confBlocks.sound.sensebox = {
     title : 'SOUND',
     ports : [ [ 'out', 'OUT' ] ],
