@@ -291,7 +291,15 @@ confBlocks.temperature.arduino = {
     standardPins : [ 'A0' ],
     fixedPorts : [ [ 'GND', 'GND' ], [ 'VCC', '5V' ] ]
 };
-
+confBlocks.temperature.calliope = {
+    title: 'TEMPERATURE',
+    ports : [ [ 'pin', 'PIN1' ] ],
+    pins : function(a) {
+        return [[Blockly.Msg.PORT_INTERNAL, 'LED_BUILTIN']]; // only inbuilt
+    },
+    sensor : true
+};
+confBlocks.temperature.microbit = confBlocks.temperature.calliope;
 confBlocks.temperature.sensebox = {
     title : 'TEMPERATURE',
     ports : [ [ 'I2C', 'I2C' ] ],

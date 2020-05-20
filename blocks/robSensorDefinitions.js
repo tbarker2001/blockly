@@ -1150,6 +1150,16 @@ sensors.sound.edison = {
 };
 
 sensors.temperature = {};
+sensors.temperature.arduino = {
+    title : 'TEMPERATURE',
+    modes : [ {
+        name : 'VALUE',
+        type : 'Number',
+        unit : 'DEGREE',
+        value : 20
+    } ],
+    ports : 'CONFIGURATION'
+};
 sensors.temperature.bob3 = {
     title : 'TEMPERATURE',
     modes : [ {
@@ -1159,7 +1169,17 @@ sensors.temperature.bob3 = {
         value : 20
     } ]
 };
-
+sensors.temperature.calliope = {
+    title : 'TEMPERATURE',
+    modes : [ {
+        name : 'VALUE',
+        type : 'Number',
+        unit : 'DEGREE',
+        value : 20
+    } ],
+    ports: 'CONFIGURATION'
+};
+sensors.temperature.microbit = sensors.temperature.calliope;
 sensors.temperature.mbot = {
     title : 'TEMPERATURE',
     modes : [ {
@@ -1171,18 +1191,6 @@ sensors.temperature.mbot = {
     ports : [ [ 'Port 1', '1' ], [ 'Port 2', '2' ], [ 'Port 3', '3' ], [ 'Port 4', '4' ] ],
     standardPort : '3'
 };
-
-sensors.temperature.arduino = {
-    title : 'TEMPERATURE',
-    modes : [ {
-        name : 'VALUE',
-        type : 'Number',
-        unit : 'DEGREE',
-        value : 20
-    } ],
-    ports : 'CONFIGURATION'
-};
-
 sensors.temperature.sensebox = {
     title : 'TEMPERATURE',
     modes : [ {
@@ -1198,9 +1206,6 @@ sensors.temperature.sensebox = {
     } ],
     ports : 'CONFIGURATION'
 };
-
-sensors.temperature.calliope = sensors.temperature.bob3;
-sensors.temperature.microbit = sensors.temperature.bob3;
 
 sensors.timer = {};
 sensors.timer.botnroll = {
