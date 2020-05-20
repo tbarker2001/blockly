@@ -819,16 +819,6 @@ sensors.key.edison = {
 };
 
 sensors.light = {};
-sensors.light.botnroll = {
-    title : 'LIGHT',
-    modes : [ {
-        name : 'LIGHT',
-        type : 'Number',
-        unit : 'PERCENT'
-    } ],
-    ports : [ [ '0', '0' ], [ '1', '1' ], [ '2', '2' ], [ '3', '3' ], [ '4', '4' ], [ '5', '5' ], [ '6', '6' ], [ '7', '7' ] ]
-};
-
 sensors.light.arduino = {
     title : 'LIGHT',
     modes : [ {
@@ -838,20 +828,26 @@ sensors.light.arduino = {
     } ],
     ports : 'CONFIGURATION'
 };
-
 sensors.light.sensebox = sensors.light.arduino;
-
+sensors.light.botnroll = {
+    title : 'LIGHT',
+    modes : [ {
+        name : 'LIGHT',
+        type : 'Number',
+        unit : 'PERCENT'
+    } ],
+    ports : [ [ '0', '0' ], [ '1', '1' ], [ '2', '2' ], [ '3', '3' ], [ '4', '4' ], [ '5', '5' ], [ '6', '6' ], [ '7', '7' ] ]
+};
 sensors.light.calliope = {
     title : 'LIGHT',
     modes : [ {
         name : 'VALUE',
         type : 'Number',
         unit : 'PERCENT'
-    } ]
+    } ],
+    ports : 'CONFIGURATION'
 };
-
 sensors.light.microbit = sensors.light.calliope;
-
 sensors.light.nxt = {
     title : 'LIGHT',
     modes : [ {
@@ -868,7 +864,6 @@ sensors.light.nxt = {
     ports : [ [ 'Port 1', '1' ], [ 'Port 2', '2' ], [ 'Port 3', '3' ], [ 'Port 4', '4' ] ],
     standardPort : '3'
 };
-
 sensors.light.mbot = {
     title : 'LIGHT',
     modes : [ {
@@ -879,7 +874,6 @@ sensors.light.mbot = {
     } ],
     ports : [ [ 'PORT_INTERNAL', '6' ], [ 'Port 1', '1' ], [ 'Port 2', '2' ], [ 'Port 3', '3' ], [ 'Port 4', '4' ] ]
 };
-
 sensors.light.edison = {
 	title : 'LIGHT',
 	modes : [ {

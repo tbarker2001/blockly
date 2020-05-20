@@ -190,7 +190,15 @@ confBlocks.light.arduino = {
     standardPins : [ 'A0' ],
     fixedPorts : [ [ 'VCC', '5V' ] ]
 };
-
+confBlocks.light.calliope = {
+    title: 'LIGHT',
+    ports : [ [ 'pin', 'PIN1' ] ],
+    pins : function(a) {
+        return [[Blockly.Msg.PORT_INTERNAL, 'LED_BUILTIN']]; // only inbuilt
+    },
+    sensor : true
+};
+confBlocks.light.microbit = confBlocks.light.calliope;
 confBlocks.light.sensebox = {
     title : 'LIGHT',
     ports : [ [ 'output', 'OUTPUT' ] ],
