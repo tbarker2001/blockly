@@ -195,8 +195,16 @@ sensors.compass.botnroll = {
         unit : 'DEGREE'
     } ]
 };
-sensors.compass.calliope = sensors.compass.botnroll;
-sensors.compass.microbit = sensors.compass.botnroll;
+sensors.compass.calliope = {
+    title : 'COMPASS',
+    modes : [ {
+        name : 'ANGLE',
+        type : 'Number',
+        unit : 'DEGREE'
+    } ],
+    ports: 'CONFIGURATION'
+};
+sensors.compass.microbit = sensors.compass.calliope;
 sensors.compass.ev3 = {
     title : 'COMPASS',
     modes : [ {

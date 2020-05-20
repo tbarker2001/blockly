@@ -220,6 +220,14 @@ confBlocks.accelerometer.sensebox = {
 confBlocks.accelerometer.arduino = confBlocks.accelerometer.sensebox;
 
 confBlocks.compass = {};
+confBlocks.compass.calliope = {
+    title: 'COMPASS',
+    ports : [ [ 'pin', 'PIN1' ] ],
+    pins : function(a) {
+        return [[Blockly.Msg.PORT_INTERNAL, 'LED_BUILTIN']]; // only inbuilt
+    },
+    sensor : true
+};
 confBlocks.compass.sensebox = {
     title : 'COMPASS',
     sensor : true
